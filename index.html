@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Where Winds Meet – Free Rewards on PC</title>
+  <link rel="preload" as="image" href="bg-ghost-market.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@600;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #07090c;
+      --gold: #e2bd6a;
+      --red: #d8483a;
+      --jade: #5fc9b0;
+      --paper: #f3ead7;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: var(--ink);
+      color: #fff;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+    }
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: var(--ink) url("bg-ghost-market.jpg") 30% center / cover no-repeat;
+      animation: drift 22s ease-in-out infinite alternate;
+    }
+
+    .shade {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(90deg, transparent 30%, rgba(7, 9, 12, 0.55) 55%, rgba(7, 9, 12, 0.88)),
+        linear-gradient(0deg, rgba(7, 9, 12, 0.6), transparent 35%);
+      pointer-events: none;
+    }
+
+    /* Floating lantern embers */
+    .embers span {
+      position: fixed;
+      z-index: 1;
+      bottom: -2vh;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ffb46a;
+      box-shadow: 0 0 10px 3px rgba(255, 140, 70, 0.7);
+      opacity: 0;
+      animation: rise linear infinite;
+      pointer-events: none;
+    }
+    .embers span:nth-child(1) { left: 12%; animation-duration: 9s; }
+    .embers span:nth-child(2) { left: 28%; animation-duration: 12s; animation-delay: 3s; }
+    .embers span:nth-child(3) { left: 44%; animation-duration: 10s; animation-delay: 6s; width: 4px; height: 4px; }
+    .embers span:nth-child(4) { left: 61%; animation-duration: 13s; animation-delay: 1s; }
+    .embers span:nth-child(5) { left: 77%; animation-duration: 11s; animation-delay: 5s; width: 4px; height: 4px; }
+    .embers span:nth-child(6) { left: 90%; animation-duration: 14s; animation-delay: 8s; }
+
+    .stage {
+      position: relative;
+      z-index: 2;
+      width: 100vw;
+      height: 100svh;
+      container-type: size;
+      --u: min(1cqw, 1.777cqh);
+      padding: calc(var(--u) * 2) calc(var(--u) * 4);
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .logo {
+      width: calc(var(--u) * 15);
+      filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.7));
+    }
+
+    main {
+      display: grid;
+      align-items: center;
+      justify-items: end;
+    }
+
+    .copy {
+      max-width: calc(var(--u) * 44);
+    }
+
+    .pill {
+      display: inline-flex;
+      margin-bottom: calc(var(--u) * 1.3);
+      padding: calc(var(--u) * 0.58) calc(var(--u) * 0.9);
+      color: var(--ink);
+      background: var(--paper);
+      border: calc(var(--u) * 0.13) solid var(--ink);
+      box-shadow: calc(var(--u) * 0.36) calc(var(--u) * 0.36) 0 var(--red);
+      font-size: calc(var(--u) * 0.85);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Cinzel, "Trajan Pro", Georgia, serif;
+      font-size: calc(var(--u) * 4.4);
+      line-height: 0.98;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-shadow: 0 calc(var(--u) * 0.3) calc(var(--u) * 1.2) rgba(0, 0, 0, 0.8);
+    }
+
+    h1 span {
+      display: block;
+      color: var(--gold);
+      text-shadow:
+        calc(var(--u) * 0.2) calc(var(--u) * 0.2) 0 var(--ink),
+        calc(var(--u) * 0.34) calc(var(--u) * 0.34) 0 var(--red);
+    }
+
+    .subtext {
+      max-width: calc(var(--u) * 36);
+      margin: calc(var(--u) * 1.3) 0 calc(var(--u) * 1.6);
+      color: rgba(255, 255, 255, 0.88);
+      font-size: calc(var(--u) * 1.15);
+      line-height: 1.5;
+      font-weight: 600;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    .awards {
+      display: block;
+      width: calc(var(--u) * 34);
+      max-width: 100%;
+      margin: calc(var(--u) * 2.4) 0 0;
+      opacity: 0.85;
+    }
+
+    .cta-area {
+      display: grid;
+      justify-items: start;
+      gap: calc(var(--u) * 0.72);
+    }
+
+    .cta-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: calc(var(--u) * 28);
+      min-height: calc(var(--u) * 5.4);
+      color: #fffaf0;
+      background:
+        linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.35) 30%, transparent 40%) -150% 0 / 250% 100% no-repeat,
+        linear-gradient(160deg, #c9a15a, #a67a36 40%, #8a6127 70%, #b58b45);
+      clip-path: polygon(0 4%, 97% 0, 100% 45%, 98.5% 100%, 2% 96%, 0.6% 55%);
+      text-decoration: none;
+      font-family: Cinzel, "Trajan Pro", Georgia, serif;
+      font-size: calc(var(--u) * 2.3);
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 3px rgba(60, 36, 8, 0.7);
+      filter: drop-shadow(0 calc(var(--u) * 0.9) calc(var(--u) * 1.4) rgba(0, 0, 0, 0.55));
+      animation: pulse 1.65s ease-in-out infinite, shine 2.6s ease-in-out infinite;
+    }
+
+    .cta:hover { filter: drop-shadow(0 calc(var(--u) * 0.9) calc(var(--u) * 1.4) rgba(0, 0, 0, 0.55)) brightness(1.1); }
+
+    .cta-badge {
+      position: absolute;
+      right: calc(var(--u) * -5.4);
+      bottom: calc(var(--u) * -0.75);
+      color: #fff;
+      font-size: calc(var(--u) * 1.28);
+      font-weight: 900;
+      white-space: nowrap;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 0 var(--ink), -2px 0 0 var(--ink), 0 -2px 0 var(--ink);
+      transform: rotate(-4deg);
+    }
+
+    .cta-badge strong { color: var(--jade); }
+
+    .windows-only {
+      margin-top: calc(var(--u) * 1.3);
+      margin-left: calc(var(--u) * 1.1);
+      color: rgba(255, 255, 255, 0.75);
+      font-size: calc(var(--u) * 0.78);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .rewards {
+      display: grid;
+      gap: calc(var(--u) * 0.6);
+      margin: calc(var(--u) * 1.3) 0 calc(var(--u) * 1.3);
+      padding: 0;
+      list-style: none;
+    }
+
+    .rewards li {
+      display: flex;
+      align-items: center;
+      gap: calc(var(--u) * 0.8);
+      font-size: calc(var(--u) * 1.08);
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    .rewards li b { color: var(--gold); }
+
+    .rewards .ico {
+      flex: none;
+      display: grid;
+      place-items: center;
+      width: calc(var(--u) * 2.1);
+      height: calc(var(--u) * 2.1);
+      border-radius: 50%;
+      background: rgba(226, 189, 106, 0.16);
+      border: 1px solid rgba(226, 189, 106, 0.55);
+      font-size: calc(var(--u) * 1.1);
+    }
+
+    .code-box {
+      display: flex;
+      align-items: center;
+      gap: calc(var(--u) * 1);
+      width: fit-content;
+      margin: 0 0 calc(var(--u) * 1.8);
+      padding: calc(var(--u) * 0.7) calc(var(--u) * 0.8) calc(var(--u) * 0.7) calc(var(--u) * 1.1);
+      background: rgba(7, 9, 12, 0.72);
+      border: 2px dashed var(--gold);
+      border-radius: calc(var(--u) * 0.5);
+    }
+
+    .code-label {
+      font-size: calc(var(--u) * 0.78);
+      font-weight: 800;
+      line-height: 1.3;
+      color: rgba(255, 255, 255, 0.75);
+      text-transform: uppercase;
+    }
+
+    .code-label small {
+      display: block;
+      color: var(--jade);
+      font-size: calc(var(--u) * 0.72);
+      text-transform: none;
+    }
+
+    .code {
+      font-family: Cinzel, "Trajan Pro", Georgia, serif;
+      font-size: calc(var(--u) * 1.6);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      color: var(--gold);
+    }
+
+    .copy-btn {
+      padding: calc(var(--u) * 0.5) calc(var(--u) * 0.9);
+      color: var(--ink);
+      background: var(--paper);
+      border: 0;
+      border-radius: calc(var(--u) * 0.35);
+      font: 900 calc(var(--u) * 0.8) Inter, "Segoe UI", Arial, sans-serif;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .live {
+      display: inline-block;
+      width: calc(var(--u) * 0.6);
+      height: calc(var(--u) * 0.6);
+      margin-right: calc(var(--u) * 0.5);
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 0 0 rgba(216, 72, 58, 0.7);
+      animation: live 1.4s ease-out infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes live {
+      to { box-shadow: 0 0 0 calc(var(--u) * 0.7) rgba(216, 72, 58, 0); }
+    }
+
+    @keyframes drift {
+      from { transform: scale(1.02) translate(0, 0); }
+      to { transform: scale(1.1) translate(-1.5%, -1%); }
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0) translateX(0); opacity: 0; }
+      15% { opacity: 0.9; }
+      100% { transform: translateY(-100vh) translateX(4vw); opacity: 0; }
+    }
+
+    @keyframes shine {
+      0%, 55% { background-position: -150% 0, 0 0; }
+      100% { background-position: 250% 0, 0 0; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(calc(var(--u) * -0.22)) scale(1.025); }
+    }
+
+    /* Portrait screens: heroine stays visible on top, copy sits at the bottom */
+    @media (orientation: portrait) {
+      .bg { background-position: 24% center; }
+      .shade {
+        background: linear-gradient(0deg, rgba(7, 9, 12, 0.95) 8%, rgba(7, 9, 12, 0.7) 45%, transparent 70%);
+      }
+      .stage {
+        --u: min(2.3cqw, 1.3cqh);
+        padding: calc(var(--u) * 2) calc(var(--u) * 2.4);
+      }
+      header { display: flex; justify-content: center; }
+      main { align-items: end; justify-items: center; text-align: center; }
+      .copy { max-width: 100%; }
+      h1 { font-size: calc(var(--u) * 3.7); }
+      .subtext { margin-inline: auto; max-width: 100%; font-size: calc(var(--u) * 1.3); }
+      .awards { width: 100%; margin-inline: auto; }
+      .cta-area { justify-items: center; }
+      .rewards { justify-items: center; margin: calc(var(--u) * 1) 0; }
+      .rewards li { font-size: calc(var(--u) * 1.2); text-align: left; }
+      .code-box { margin-inline: auto; margin-bottom: calc(var(--u) * 1.6); }
+      .cta { min-width: calc(var(--u) * 26); }
+      .windows-only { margin: 0; }
+      .cta-badge { position: static; display: block; margin-top: calc(var(--u) * 1.4); transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bg, .embers span, .cta { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="shade" aria-hidden="true"></div>
+  <div class="embers" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <div class="stage">
+    <header>
+      <img class="logo" src="logo.png" alt="Where Winds Meet">
+    </header>
+
+    <main>
+      <section class="copy">
+        <div class="pill"><span class="live"></span>New update live · Limited-time events</div>
+        <h1>Your Wuxia Legend <span>Starts Free Today.</span></h1>
+        <ul class="rewards">
+          <li><span class="ico">🎁</span><span><b>Free starter rewards</b> for every new hero</span></li>
+          <li><span class="ico">🎴</span><span><b>Bonus codes &amp; free pulls</b> to boost your start</span></li>
+          <li><span class="ico">🌕</span><span><b>Limited-time events</b> live right now</span></li>
+        </ul>
+        <div class="code-box">
+          <div class="code">🎁 FREE STARTER REWARDS</div>
+          <div class="code-label">Claim them<small>in-game after install</small></div>
+        </div>
+        <div class="cta-area">
+          <div class="cta-wrap">
+            <a class="cta" id="cta" href="https://trk.pangamer.com/5J8H/2J1J9/" target="_blank" rel="noopener">Play Free &amp; Claim</a>
+            <span class="cta-badge">100% <strong>Free</strong> on PC</span>
+          </div>
+          <div class="windows-only">Windows PC · Award-winning open world · No purchase needed</div>
+        </div>
+        <img class="awards" src="awards.png" alt="Best New Game, Innovation Excellence Game Award, Best PC &amp; Console Game of the Year, Gamescom Award">
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Forward the lander's query string (Propeller macros: sub1=${SUBID}&sub2=${ZONEID}...) to the offer link.
+    const cta = document.getElementById("cta");
+    if (window.location.search) {
+      cta.href = cta.href + window.location.search;
+    }
+
+  </script>
+</body>
+</html>
